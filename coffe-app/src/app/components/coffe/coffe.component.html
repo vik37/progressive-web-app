@@ -1,0 +1,86 @@
+<form>
+  <mat-card>
+    <mat-card-title>Basic Coffe Data</mat-card-title>
+    <mat-form-field>
+      <input matInput maxlength="10" placeholder="Coffe Name"
+              name="name" [(ngModel)]="coffee.name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Coffe Type" name="type" [(ngModel)]="coffee.type">
+        <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+  <br />
+  <mat-card>
+    <mat-card-title>Place Information</mat-card-title>
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="Place Name"
+              name="place" [(ngModel)]="coffee.place">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Address" name="address" [(ngModel)]="coffee.location!.address">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="City" name="city" [(ngModel)]="coffee.location!.city">
+    </mat-form-field>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Ratings</mat-card-title>
+    <mat-card-subtitle>Overall Ratings</mat-card-subtitle>
+    <mat-slider max="10" [showTickMarks]="true"
+                 discrete>
+      <input matSliderThumb name="rating" [(ngModel)]="coffee.rating" />
+    </mat-slider>
+    <mat-card-subtitle>
+      <mat-slide-toggle #testingSelector (change)="testingRatingChanged(testingSelector.checked)">Tasting Ratings</mat-slide-toggle>
+    </mat-card-subtitle>
+
+    <div *ngIf="coffee.tastingRating">
+      <section id="testing" *ngIf="testingSelector.checked">
+        <label>Aroma</label>
+        <mat-slider max="10" [showTickMarks]="true"
+                    discrete>
+          <input matSliderThumb name="aromaRating" [(ngModel)]="coffee.tastingRating.aroma" />
+        </mat-slider>
+
+        <label>Flavor</label>
+        <mat-slider max="10" [showTickMarks]="true"
+                    discrete>
+          <input matSliderThumb name="flavorRating" [(ngModel)]="coffee.tastingRating.flavor" />
+        </mat-slider>
+
+        <label>Intensity</label>
+        <mat-slider max="10" [showTickMarks]="true"
+                    discrete>
+          <input matSliderThumb name="intensityRating" [(ngModel)]="coffee.tastingRating.intensity" />
+        </mat-slider>
+
+        <label>Sweetness</label>
+        <mat-slider max="10" [showTickMarks]="true"
+                    discrete>
+          <input matSliderThumb name="sweetnessRating" [(ngModel)]="coffee.tastingRating.sweetness" />
+        </mat-slider>
+
+        <label>Aftertaste</label>
+        <mat-slider max="10" [showTickMarks]="true"
+                    discrete>
+          <input matSliderThumb name="aftertasteRating" [(ngModel)]="coffee.tastingRating.aftertaste" />
+        </mat-slider>
+      </section>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <mat-form-field appearance="fill">
+      <textarea matInput placeholder="Notes"
+              name="notes" [(ngModel)]="coffee.notes"></textarea>
+    </mat-form-field>
+
+  </mat-card>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </mat-card-actions>
+</form>
