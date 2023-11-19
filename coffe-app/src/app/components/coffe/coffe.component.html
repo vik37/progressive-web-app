@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-title>Basic Coffe Data</mat-card-title>
     <mat-form-field>
-      <input matInput maxlength="10" placeholder="Coffe Name"
+      <input matInput placeholder="Coffe Name"
               name="name" [(ngModel)]="coffee.name">
     </mat-form-field>
     <mat-form-field>
@@ -34,7 +34,10 @@
       <input matSliderThumb name="rating" [(ngModel)]="coffee.rating" />
     </mat-slider>
     <mat-card-subtitle>
-      <mat-slide-toggle #testingSelector (change)="testingRatingChanged(testingSelector.checked)">Tasting Ratings</mat-slide-toggle>
+      <mat-slide-toggle #testingSelector [checked]="testingEnable"
+          (change)="testingRatingChanged(testingSelector.checked)">
+            Tasting Ratings
+      </mat-slide-toggle>
     </mat-card-subtitle>
 
     <div *ngIf="coffee.tastingRating">
