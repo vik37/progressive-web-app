@@ -20,19 +20,22 @@ export class GeolocationService {
     )
   }
 
-  getMapLink(location:PlaceLocation){
+  getMapLink(location:PlaceLocation | null): string{
     let query = '';
-    if(location.latitude){
-      query = location.latitude+','+location.longitude;
+    if(location && location !== null){
+      if(location.latitude){
+        query = location.latitude+','+location.longitude;
+      }
+      else{
+        query = `${location.address},${location.city}`;
+      }
+      if(/iPad|iPhone|iPod/.test(navigator.userAgent)){
+        return `https://maps.apple.com/?q=${query}`;
+      }
+      else{
+        return `https://maps.google.com/?q=${query}`;
+      }
     }
-    else{
-      query = `${location.address},${location.city}`;
-    }
-    if(/iPad|iPhone|iPod/.test(navigator.userAgent)){
-      return `https://maps.apple.com/?q=${query}`;
-    }
-    else{
-      return `https://maps.google.com/?q=${query}`;
-    }
+    return query;
   }
 }

@@ -2,7 +2,8 @@ import {TastingRating} from 'src/app/logic/tasting-rating';
 import {PlaceLocation} from 'src/app/logic/place-location';
 
 export class Coffee{
-  type: string = ''
+  _id:string | undefined;
+  type: string = '';
   rating: number = 0;
   notes: string = '';
   tastingRating: TastingRating | null;
