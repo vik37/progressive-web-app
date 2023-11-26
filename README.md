@@ -83,7 +83,46 @@ ________________________________________________________________________________
 *  On mobile phones, Safari, Chrome, and Android have a share action directly inside the browser. Progressive Web App will work as a full-screen app in this case we don't have a browser UI, so there is no browser share button and we have to create one. 
 
 * The Web share API, it's not standard in every browser and we need to verify if it's there or not.
+***********************************************
 
+
+### Chapter: 5. Creating an Installable PWA
+
+###### Video: The web app manifest
+-----------------------------------------------
+               
+
+* Web App Manifest - it's a W3CS pack for the website's metadata. 
+
+* It's a JSON file. It should be served of application forward slash manifest slash JSON. (It will also worked with different content type). 
+
+* We can link in the HTML with that file using the link element with the manifest. - application/manifest+json 
+
+* Linked in the HTML with `<link rel="manifest">` 
+
+* With the Web App Manifest, we can define the app's name, the icons, and icon name, the installed behavior (do we want the full-screen experience, do we want to accept portrait and landscape orientations or just landscape or portrait), we can set the theme, colors and information to recreate the splash screens (those screens that appear when you open the icon. 
+
+*  Web app manifest generators - these are websites where you can fill a couple of form elements and they will create the JSON for you. 
+
+*  Automatic Generators URL's: *tomitmgithub.io/appmanifest*, *brucelawson.github.io/manifest*, *app-manifest.firebaseapp.com*. 
+
+* Compatibility: Chrome for Android, Chrome OS, Safari (Custom spec), Firefox, Opera on Android, Samsung Internet Browser. (Safari is not supported in IOS). 
+
+*  "start_url" - If we don't set this property when we add the icon to the home screen or the launcher, it will use the current url. 
+
+*  "orientation"- it's useful when we are working with an OS fullscreen. 
+
+*  "scope is a relative url to my domain", if we have pwa in a subfolder, for ex., slash web app, we can say that here. 
+
+-----------------------------------------------
+###### Video: Inviting the user to install the app
+                
+
+*   The difference being open in fullscreen mode or stand-alone mode or open in the browser. On iOS to recognize the mode that the user is using at that point, we need to use, the navigator. standalone which is the boolean that recognizes if we are in the app or in the browser. true: app, false: browser. 
+
+*   Web App Banner - a banner that the OS shows automatically based on some rules. 
+
+*   The browser will promote the installation for us. There are a couple of restrictions: Must use HTTPS, Must have a service worker, Must have a manifest with an icon and background color, Need to have the user engage with your website. 
 ________________________________________________________________________________________________________________________________________________________
 
 ## IMAGE EXAMPLES
