@@ -17,6 +17,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import 'hammerjs';
 import { ListComponent } from './components/list/list.component';
@@ -43,7 +44,8 @@ import { CoffeComponent } from './components/coffe/coffe.component';
     MatSliderModule,
     MatToolbarModule,
     MatCardModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

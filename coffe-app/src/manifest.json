@@ -1,0 +1,51 @@
+{
+  "name": "My coffee app - the best coffee app forever",
+  "start_url":"/",
+  "orientation":"any",
+  "scope":"/",
+  "display": "standalone",
+
+  "short_name": "CoffeApp",
+  "theme_color": "#472D21",
+  "background_color": "#C0B764",
+  "icons": [
+    {
+      "src": "icons/icon_96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon_144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "form_factor":"narrow",
+      "src": "icons/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "form_factor":"wide",
+      "src": "icons/icon_screen_720.png",
+      "sizes": "720x720",
+      "type": "image/png"
+    }
+  ]
+}
