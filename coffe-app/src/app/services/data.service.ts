@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Coffee} from 'src/app/logic/coffee';
-import {PlaceLocation} from 'src/app/logic/place-location';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
