@@ -122,7 +122,41 @@ ________________________________________________________________________________
 
 *   Web App Banner - a banner that the OS shows automatically based on some rules. 
 
-*   The browser will promote the installation for us. There are a couple of restrictions: Must use HTTPS, Must have a service worker, Must have a manifest with an icon and background color, Need to have the user engage with your website. 
+*   The browser will promote the installation for us. There are a couple of restrictions: Must use HTTPS, Must have a service worker, Must have a manifest with an icon and background color, Need to have the user engage with your website.
+
+  ***********************************************
+### Chapter: 6. Going Offline with Service Workers
+
+###### What is a service worker?
+-----------------------------------------------
+              
+
+* Service Workers is a new ability for the browsers: JS thread, Detached from any tab or PWA instance, acts as the "owner" of a scope (The scope is the origin or path). - Roughly a domain and a path inside that domain, Has abilities on the scope. 
+
+* Abilities: Act as a network proxy, Can access a cache storage (it's not a local storage or like IndexedDB. Cache storage is storing HTTP responses [HTTP Headers, Cookies, etc.]), Receiving messages in the name of the scope, Execute background code for the scope event if the user is closing **PWA**. 
+
+* Challenges: No access to UI or DOM APIs (we can't manipulate HTML there. "This is a thread running in the background"), No access to synchronous APIs, You can talk to the "client". 
+
+* Any HTML in the scope can register a Service Worker. 
+
+* Once it's registered, It's updated frequently by the browser based on the HTTP cache. If you change that logic, then the browser will update that logic using HTTP headers with a maximum of 24 hours. 
+
+*  Has limited execution time in the background. 
+
+*  Perfect for progressive enhancement. This means if S.W. is not available in 1 particular browser, nothing will happen, because the client is still making those requests if the server were sending the responses. 
+
+* Use cases for S.W. are: Deliver assets from a cache immediately. (ex. *Native app all the files will download on the phone and this will happen the same with a PWA*), Act as a Web Server replacement when it is offline. (It can serve all the files when the device is offline), React to bad connections. 
+
+* The lifetime of the S.W. > after it was installed, if no errors, it's been activated. This means it's there, up and running, but after a while, if that service worker is doing nothing, it's going idle, and the browser will terminate and going back into activation mode when there is another fetch. 
+
+###### Pre-caching app's shell with ngsw
+-----------------------------------------------               
+
+1. NGSW - Angular Service Worker. 
+
+2. Only when we are building the project for production will create a Service Worker. In Development mode, the S.W. is off. 
+
+
 ________________________________________________________________________________________________________________________________________________________
 
 ## IMAGE EXAMPLES
@@ -150,6 +184,6 @@ ________________________________________________________________________________
 
   <img src="https://user-images.githubusercontent.com/59177404/285496450-4d4f4768-0092-4276-a244-ab9b46e0f554.png" width="180" height="300">
 
-  <img src="https://private-user-images.githubusercontent.com/59177404/285661987-bff63b81-2d9f-4446-90d8-aa3b628da2d2.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDEwMTMwNTMsIm5iZiI6MTcwMTAxMjc1MywicGF0aCI6Ii81OTE3NzQwNC8yODU2NjE5ODctYmZmNjNiODEtMmQ5Zi00NDQ2LTkwZDgtYWEzYjYyOGRhMmQyLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzExMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMTI2VDE1MzIzM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTk3MTZiY2QxZDAzOWQ3MDkxZGMxMDgzNTNlNDY1M2ZkN2MzYjI1MGFkZmM3MjJjM2ZmMDI5ODQ3NmY2NzVkZmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.Vrg-BNnNKxOec2rTanDoId8eNFIN3xpjb_3WyQTVmy4" width="180" height="300">
+  <img src="https://private-user-images.githubusercontent.com/59177404/285661987-bff63b81-2d9f-4446-90d8-aa3b628da2d2.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDExMTkyMDEsIm5iZiI6MTcwMTExODkwMSwicGF0aCI6Ii81OTE3NzQwNC8yODU2NjE5ODctYmZmNjNiODEtMmQ5Zi00NDQ2LTkwZDgtYWEzYjYyOGRhMmQyLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzExMjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMTI3VDIxMDE0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdkN2E0MTdjODRhNTE4NmZjYTlkNzQ1OTg3ZjY4OWU2MTkyN2ZkZmI2Y2JiZDM2YjQ1YzU2NWY2OGQyM2UyZGUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.JUMUHrTUc8nizfQnK60xbW9T5EsKNskAySTIEZ8unmw" width="180" height="300">
 <h6>App UI Example</h6>
 </div>
