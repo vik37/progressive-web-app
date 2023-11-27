@@ -1,0 +1,47 @@
+{
+  "index": "/index.html",
+  "appData": {
+    "version": "1.1.0"
+  },
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/icons/**",
+          "/index.html",
+          "/*.css",
+          "/*.js",
+          "/manifest.json"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/icon?family=Material+Icons",
+          "https://fonts.gstatic.com/s/*"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": ["/coffees"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 30,
+        "maxAge": "2h",
+        "timeout": "2s"
+      }
+    }
+  ]
+}

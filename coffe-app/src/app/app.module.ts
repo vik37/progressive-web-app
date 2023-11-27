@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {environment} from 'src/environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import 'hammerjs';
+import {ServiceWorkerModule} from '@angular/service-worker';
 import { ListComponent } from './components/list/list.component';
 import { CoffeComponent } from './components/coffe/coffe.component';
 
@@ -35,6 +37,7 @@ import { CoffeComponent } from './components/coffe/coffe.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js',{enabled: true}),
 
     // Angular Material
     MatButtonModule,
